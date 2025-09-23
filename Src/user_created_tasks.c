@@ -400,6 +400,10 @@ void vShellTask(void *pvParameters)
                         putsUart0("Preemption disabled (cooperative mode)\n");
                     }
                 }
+                else if(isCommand(&data, "Reboot", 0))
+                {
+                    NVIC_APINT_R = NVIC_APINT_VECTKEY | NVIC_APINT_SYSRESETREQ;
+                }
 
                 else
                 {
@@ -421,3 +425,4 @@ void vShellTask(void *pvParameters)
         vTaskDelay(1); // yield to other tasks
     }
 }
+
